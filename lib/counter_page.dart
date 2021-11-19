@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx_examples/counter/counter.dart';
+import 'package:mobx_counter_app/counter.dart';
 
-class CounterExample extends StatefulWidget {
-  const CounterExample();
+class CounterPage extends StatefulWidget {
+  const CounterPage({Key? key}) : super(key: key);
 
   @override
-  CounterExampleState createState() => CounterExampleState();
+  CounterPageState createState() => CounterPageState();
 }
 
-class CounterExampleState extends State<CounterExample> {
+class CounterPageState extends State<CounterPage> {
   final Counter counter = Counter();
 
   @override
