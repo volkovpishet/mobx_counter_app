@@ -45,3 +45,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Shaders warm up data
+flutter_shaders_warm_up_data*.sksl.json
