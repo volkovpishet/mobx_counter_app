@@ -19,9 +19,7 @@ mixin _$Counter on _Counter, Store {
 
   @override
   set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
-    });
+    _$valueAtom.reportWrite(value, super.value, () {});
   }
 
   final _$_CounterActionController = ActionController(name: '_Counter');
