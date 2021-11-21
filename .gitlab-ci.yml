@@ -16,3 +16,18 @@ dart-formatter:
   stage: check:static
   interruptible: true
   script: fvm flutter format --dry-run --set-exit-if-changed .
+
+dart-analyzer:
+  image: volkovpishet/flutter-base:1
+  stage: check:static
+  interruptible: true
+  script: fvm flutter analyze --fatal-infos --fatal-warnings
+
+code-generation-mismatch-check:
+  image: volkovpishet/flutter-base:1
+  stage: check:static
+  interruptible: true
+  script:
+    - fvm flutter pub get
+    - fvm flutter pub run build_runner build --delete-conflicting-outputs --fail-on-severe
+    - (( $(git status --untracked-files=no --porcelain|wc -l) == 0 )) || { echo >&2 "Some changes in generated files detected"; exit 1; }
