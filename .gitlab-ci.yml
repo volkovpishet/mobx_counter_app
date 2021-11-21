@@ -2,6 +2,7 @@ stages:
   - check:static
   - check:tests
   - build:prepare
+  - release
 
 # default rules for jobs execution
 workflow:
@@ -51,3 +52,22 @@ tests:
   stage: check:tests
   script:
     - fvm flutter test
+
+release:android:
+  image: volkovpishet/flutter-android:1
+  cache:
+    policy: pull
+    paths:
+      - flutter_shaders_warm_up_data.sksl.json
+  before_script:
+    - echo ${ANDROID_SERVICE_ACCOUNT_API_KEY} > android/pc-api-8001975366575556685-777-dd7767eaa5b6.json
+    - echo -e ${ANDROID_KEY_PROPERTIES} > android/key.properties
+    - echo -n ${ANDROID_SIGNING_JKS_AS_BASE64_STRING} | base64 -d > android/app/upload-keystore.jks
+  stage: release
+  when: manual
+  script:
+    - fvm flutter pub get
+    - fvm flutter build appbundle --bundle-sksl-path flutter_shaders_warm_up_data.sksl.json
+    - cd android
+    - bundle install
+    - bundle exec fastlane release

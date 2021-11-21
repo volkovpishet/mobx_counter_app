@@ -3,6 +3,10 @@ default_platform(:android)
 platform :android do
   desc "Release Flutter app"
   lane :release do
-    upload_to_play_store(track: "internal", aab: "../build/app/outputs/bundle/release/app-release.aab")
+    upload_to_play_store(
+      track: "internal",
+      aab: "../build/app/outputs/bundle/release/app-release.aab",
+      release_status: 'draft',
+    )
   end
 end
