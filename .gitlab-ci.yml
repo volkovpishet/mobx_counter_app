@@ -1,5 +1,6 @@
 stages:
   - check:static
+  - check:tests
 
 # default rules for jobs execution
 workflow:
@@ -31,3 +32,9 @@ code-generation-mismatch-check:
     - fvm flutter pub get
     - fvm flutter pub run build_runner build --delete-conflicting-outputs --fail-on-severe
     - (( $(git status --untracked-files=no --porcelain|wc -l) == 0 )) || { echo >&2 "Some changes in generated files detected"; exit 1; }
+
+tests:
+  image: volkovpishet/flutter-base:1
+  stage: check:tests
+  script:
+    - fvm flutter test
