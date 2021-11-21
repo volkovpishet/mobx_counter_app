@@ -32,3 +32,13 @@ Runner/GeneratedPluginRegistrant.*
 !default.mode2v3
 !default.pbxuser
 !default.perspectivev3
+
+# Private data related
+fastlane/fastlane-api-key.json
+fastlane/match-repo-key.rsa
+
+# Fastlane related
+fastlane/README.md
+fastlane/report.xml
+Runner.ipa
+Runner.app.dSYM.zip
