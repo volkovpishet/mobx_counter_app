@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mobx_counter_app">
+    package="com.nextstateapps.mobxcounter">
    <application
         android:label="mobx_counter_app"
         android:icon="@mipmap/ic_launcher">
