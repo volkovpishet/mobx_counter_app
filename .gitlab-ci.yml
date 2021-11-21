@@ -71,3 +71,17 @@ release:android:
     - cd android
     - bundle install
     - bundle exec fastlane release
+
+release:ios:
+  before_script:
+    - echo -n ${IOS_APP_STORE_CONNECT_API_KEY} > ios/fastlane/fastlane-api-key.json
+    - echo -e "${IOS_MATCH_SSH_KEY_TO_APP_SECRETS_REPO}" > ios/fastlane/match-repo-key.rsa
+    - chmod 400 ios/fastlane/match-repo-key.rsa
+  stage: release
+  when: manual
+  tags:
+    - macos
+    - nix
+    - xcode13.1
+  script:
+    - HOME_NAME=mobx-counter-app-home BUNDLER_VERSION=2.2.28 bash <(curl -s https://raw.githubusercontent.com/volkovpishet/flutter-chamber/master/flutter_chamber.sh) "fvm flutter pub get && fvm flutter build ios --release --no-codesign && cd ios && bundle install && LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 bundle exec fastlane release"
