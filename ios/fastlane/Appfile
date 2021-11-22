@@ -1,0 +1,2 @@
+app_identifier("com.nextstateapps.mobxcounter") # The bundle identifier of our app
+apple_id("vlkv.andrey@gmail.com") # Apple email address from which app is being published

@@ -11,3 +11,9 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
+# service account api key
+pc-api-8001975366575556685-777-dd7767eaa5b6.json
+
+# Fastlane related
+fastlane/README.md
+fastlane/report.xml
